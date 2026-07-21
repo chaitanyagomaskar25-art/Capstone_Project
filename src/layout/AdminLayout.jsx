@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, Outlet } from 'react-router'
+import { NavLink, Outlet } from 'react-router'
 import { useAuthDispatch } from '../context/AuthContext'
 
 const AdminLayout = () => {
@@ -11,9 +11,9 @@ const AdminLayout = () => {
   return (
     <>
      <div>
-      <Link to="/admin">Dashboard</Link><br />
-      <Link to="/admin/products">Products</Link><br />
-      <Link>Add Products</Link> <br />
+      <NavLink to="/admin">Dashboard</NavLink><br />
+      <NavLink to="/admin/products">Products</NavLink><br />
+      <NavLink to='/admin/add-product'>Add Products</NavLink> <br />
       <button onClick={handleLogout}>Log Out</button>
      </div>
       <Outlet />

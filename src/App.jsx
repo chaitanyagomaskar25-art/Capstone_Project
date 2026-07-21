@@ -8,16 +8,18 @@ import Dashboard from "./pages/admin/Dashboard";
 import AdminProducts from "./pages/admin/Products";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Login from "./pages/Login";
+import EditProduct from "./pages/admin/EditProduct";
+import AddProducts from "./pages/admin/AddProducts";
 
 const routes = createBrowserRouter([
-  {
-  path: "/",
-  element: <Navigate to="/login" replace />,
-},
-{
-  path: "/login",
-  element: <Login />,
-},
+//   {
+//   path: "/",
+//   element: <Navigate to="/login" replace />,
+// },
+// {
+//   path: "/login",
+//   element: <Login />,
+// },
 {
   path: "/home",
   element: <PublicLayout />,
@@ -39,9 +41,9 @@ const routes = createBrowserRouter([
 {
   path: "/admin",
   element: (
-    <ProtectedRoute>
+    // <ProtectedRoute>
       <AdminLayout />
-    </ProtectedRoute>
+    // </ProtectedRoute>
   ),
   children: [
     {
@@ -52,6 +54,14 @@ const routes = createBrowserRouter([
       path: "products",
       element: <AdminProducts />,
     },
+    {
+        path: "add-product",
+        element: <AddProducts />,
+      },
+      {
+        path: "edit-product/:id",
+        element: <EditProduct />,
+      },
   ],
 },
 ]);
