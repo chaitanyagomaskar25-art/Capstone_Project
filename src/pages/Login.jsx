@@ -35,13 +35,7 @@ const Login = () => {
 
       navigate("/admin");
       return;
-    }
-
-    // Mock User Login
-    if (
-      formData.email === "user@gmail.com" &&
-      formData.password === "user123"
-    ) {
+    }else{
       dispatch({
         type: "LOGIN",
         payload: "user",
