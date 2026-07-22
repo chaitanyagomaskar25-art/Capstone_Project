@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles, Truck, RefreshCw, ShoppingBag, ShieldCheck } from 'lucide-react';
+import { Link } from 'react-router';
 
 const Home = () => {
   // Animation Variants for orchestrated entrance
@@ -89,7 +90,8 @@ const Home = () => {
               whileTap={{ scale: 0.97 }}
               className="px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl shadow-lg shadow-indigo-600/20 transition-colors flex items-center gap-2 group cursor-pointer border-0 outline-none"
             >
-              Shop Collection
+              
+              <Link to='/home/products'> Shop Collection</Link>
               <ShoppingBag className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
             </motion.button>
 
@@ -98,7 +100,8 @@ const Home = () => {
               whileTap={{ scale: 0.97 }}
               className="px-8 py-4 bg-white hover:bg-slate-100 text-slate-700 font-semibold rounded-xl shadow-md transition-colors cursor-pointer flex items-center gap-2 border-0 outline-none"
             >
-              Explore Trending
+              <Link to='/home/products'>Explore Trending</Link>
+              
               <ArrowRight className="w-4 h-4 text-slate-400" />
             </motion.button>
           </motion.div>
