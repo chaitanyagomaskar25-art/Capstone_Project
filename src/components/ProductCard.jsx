@@ -1,37 +1,28 @@
 import React from "react";
+import { Link } from "react-router"; // Import Link
 import { useDispatch, useCart } from "../context/CartContext";
-import { Plus, Minus, ShoppingBag, ImageOff } from "lucide-react";
+import { Plus, Minus, ShoppingBag, ImageOff, Eye } from "lucide-react";
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
   const cartItems = useCart() || [];
 
-  // Find if this specific product is already in the cart
   const cartItem = cartItems.find((item) => item.id === product.id);
   const quantity = cartItem ? cartItem.quantity : 0;
 
-  // Add initial item to cart
-  const handleAddToCart = () => {
-    dispatch({
-      type: "ADD",
-      payload: product,
-    });
+  const handleAddToCart = (e) => {
+    e.stopPropagation();
+    dispatch({ type: "ADD", payload: product });
   };
 
-  // Increment item quantity
-  const handleIncrease = () => {
-    dispatch({
-      type: "ADD",
-      payload: product,
-    });
+  const handleIncrease = (e) => {
+    e.stopPropagation();
+    dispatch({ type: "ADD", payload: product });
   };
 
-  // Decrement item quantity (removes if quantity reaches 0)
-  const handleDecrease = () => {
-    dispatch({
-      type: "DECREMENT",
-      payload: product.id,
-    });
+  const handleDecrease = (e) => {
+    e.stopPropagation();
+    dispatch({ type: "REMOVE", payload: product.id });
   };
 
   return (
@@ -58,14 +49,26 @@ const ProductCard = ({ product }) => {
             {product.category}
           </span>
         )}
+
+        {/* --- VIEW DETAILS BUTTON OVERLAY --- */}
+        <Link
+          to={`/home/products/${product.id}`}
+          className="absolute top-3 right-3 p-2 bg-white/90 hover:bg-indigo-600 hover:text-white text-slate-600 rounded-xl backdrop-blur-md transition-all shadow-xs group-hover:opacity-100 opacity-90 sm:opacity-0"
+          title="View Details"
+        >
+          <Eye className="w-4 h-4" />
+        </Link>
       </div>
 
       {/* Product Information */}
       <div className="p-2 pt-3 flex-1 flex flex-col justify-between space-y-3">
         <div>
-          <h3 className="font-bold text-slate-900 text-xs sm:text-sm line-clamp-2 leading-snug group-hover:text-indigo-600 transition-colors">
-            {product.title}
-          </h3>
+          {/* Title link leading to the details page */}
+          <Link to={`/home/products/${product.id}`}>
+            <h3 className="font-bold text-slate-900 text-xs sm:text-sm line-clamp-2 leading-snug hover:text-indigo-600 transition-colors cursor-pointer">
+              {product.title}
+            </h3>
+          </Link>
         </div>
 
         {/* Footer: Price & Dynamic Action Button */}
@@ -77,9 +80,8 @@ const ProductCard = ({ product }) => {
             </span>
           </div>
 
-          {/* Dynamic Action Area */}
+          {/* Dynamic Stepper / Cart Button */}
           {quantity === 0 ? (
-            /* First Time: Default "Add to Cart" Button */
             <button
               onClick={handleAddToCart}
               className="inline-flex items-center justify-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white text-xs font-semibold px-3.5 py-2 rounded-xl transition-all shadow-md shadow-indigo-600/20 cursor-pointer"
@@ -88,12 +90,10 @@ const ProductCard = ({ product }) => {
               Add To Cart
             </button>
           ) : (
-            /* Subsequent Times: Quantity Stepper (- quantity +) */
             <div className="flex items-center gap-2 bg-slate-100 p-1 rounded-xl">
               <button
                 onClick={handleDecrease}
                 className="w-7 h-7 rounded-lg bg-white text-slate-700 hover:text-indigo-600 flex items-center justify-center shadow-xs transition-all cursor-pointer active:scale-95"
-                aria-label="Decrease quantity"
               >
                 <Minus className="w-3 h-3" />
               </button>
@@ -105,7 +105,6 @@ const ProductCard = ({ product }) => {
               <button
                 onClick={handleIncrease}
                 className="w-7 h-7 rounded-lg bg-indigo-600 text-white flex items-center justify-center shadow-xs transition-all cursor-pointer active:scale-95"
-                aria-label="Increase quantity"
               >
                 <Plus className="w-3 h-3" />
               </button>

@@ -10,6 +10,9 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Login from "./pages/Login";
 import EditProduct from "./pages/admin/EditProduct";
 import AddProducts from "./pages/admin/AddProducts";
+import ProductDetails from "./components/ProductDetails";
+import NotFound from "./components/NotFound";
+import ErrorPage from "./pages/ErrorPage";
 
 const routes = createBrowserRouter([
   {
@@ -23,6 +26,8 @@ const routes = createBrowserRouter([
 {
   path: "/home",
   element: <PublicLayout />,
+    errorElement: <ErrorPage />,
+
   children: [
     {
       index: true,
@@ -31,6 +36,10 @@ const routes = createBrowserRouter([
     {
       path: "products",
       element: <Products />,
+    },
+    {
+      path: "products/:id",
+      element: <ProductDetails />,
     },
     {
       path: "cart",
@@ -45,6 +54,8 @@ const routes = createBrowserRouter([
       <AdminLayout />
      </ProtectedRoute>
   ),
+    errorElement: <ErrorPage />,
+
   children: [
     {
       index: true,
@@ -64,6 +75,10 @@ const routes = createBrowserRouter([
       },
   ],
 },
+{
+  path: "*",
+  element: <NotFound />,
+}
 ]);
 
 export default routes;
