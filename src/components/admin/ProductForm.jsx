@@ -6,7 +6,8 @@ import {
   FileText, 
   Check, 
   ImageOff,
-  FolderTree
+  FolderTree,
+  DollarSign
 } from "lucide-react";
 
 const ProductForm = ({ initialData, onSubmit, buttonText }) => {
@@ -106,11 +107,11 @@ const ProductForm = ({ initialData, onSubmit, buttonText }) => {
         {/* Price Field */}
         <div className="space-y-1.5">
           <label htmlFor="price" className=" text-xs font-bold text-slate-700 flex items-center gap-1.5">
-            <IndianRupee className="w-3.5 h-3.5 text-indigo-600" />
-            Price (₹) <span className="text-rose-500">*</span>
+            <DollarSign className="w-3.5 h-3.5 text-indigo-600" />
+            Price ($) <span className="text-rose-500">*</span>
           </label>
           <div className="relative">
-            <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-400">₹</span>
+            <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-400">$</span>
             <input
               type="number"
               id="price"

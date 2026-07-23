@@ -76,7 +76,7 @@ const ProductCard = ({ product }) => {
           <div>
             <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider block">Price</span>
             <span className="text-sm sm:text-base font-extrabold text-slate-900">
-              ₹{product.price}
+              ${product.price}
             </span>
           </div>
 

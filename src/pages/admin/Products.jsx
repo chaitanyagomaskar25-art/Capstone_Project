@@ -205,7 +205,7 @@ const Products = () => {
                         <div className="flex items-center gap-4">
                           <div className="w-12 h-12 rounded-xl bg-slate-50 overflow-hidden shrink-0 p-1.5 flex items-center justify-center group-hover:scale-105 transition-transform">
                             <img
-                              src={product.image}
+                              src={product.thumbnail}
                               alt={product.title}
                               className="w-full h-full object-contain"
                             />
@@ -221,7 +221,7 @@ const Products = () => {
 
                       {/* Price */}
                       <td className="py-4 px-6 font-bold text-slate-900 text-sm">
-                        ₹{product.price}
+                        ${product.price}
                       </td>
 
                       {/* Actions */}
