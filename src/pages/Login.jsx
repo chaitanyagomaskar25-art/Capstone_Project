@@ -120,7 +120,7 @@ const Login = () => {
                 type="email"
                 id="email"
                 name="email"
-                placeholder="name@example.com"
+                placeholder="admin@gmail.com"
                 value={formData.email}
                 onChange={handleChange}
                 required
@@ -157,6 +157,7 @@ const Login = () => {
                 {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
               </button>
             </div>
+            <p>For admin: admin123</p>
           </div>
 
           {/* Submit Action */}
