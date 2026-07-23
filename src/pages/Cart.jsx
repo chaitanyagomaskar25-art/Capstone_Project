@@ -125,12 +125,12 @@ const Cart = () => {
           <div className="space-y-3 text-xs text-slate-600">
             <div className="flex justify-between">
               <span>Subtotal</span>
-              <span className="font-semibold text-slate-900">₹ {formattedTotal}</span>
+              <span className="font-semibold text-slate-900">$ {formattedTotal}</span>
             </div>
             <div className="flex justify-between">
               <span>Shipping</span>
               <span className="font-semibold text-emerald-600">
-                {amountLeftForFreeShipping <= 0 ? 'FREE' : '₹ 99'}
+                {amountLeftForFreeShipping <= 0 ? 'FREE' : '$ 99'}
               </span>
             </div>
             <div className="flex justify-between">
@@ -145,7 +145,7 @@ const Cart = () => {
           <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
             <div>
               <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Total Amount</p>
-              <p className="text-2xl font-extrabold text-slate-900">₹ {formattedTotal}</p>
+              <p className="text-2xl font-extrabold text-slate-900">$ {formattedTotal}</p>
             </div>
             <span className="px-2.5 py-1 bg-indigo-50 text-indigo-700 text-[10px] font-bold rounded-lg flex items-center gap-1">
               <Sparkles className="w-3 h-3" />

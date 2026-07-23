@@ -27,7 +27,7 @@ const CartCard = ({ item }) => {
             {item.title}
           </h2>
           <p className="text-xs sm:text-sm font-bold text-slate-900">
-            ₹{item.price}
+            ${item.price}
           </p>
         </div>
       </div>
