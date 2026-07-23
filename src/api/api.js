@@ -1,7 +1,7 @@
 const BASE_URL = "http://localhost:3000/products";
 
 export const getProducts = async () => {
-  const response = await fetch("http://localhost:3000/products");
+  const response = await fetch(`${BASE_URL}`);
 
   if (!response.ok) {
     throw new Error("Failed to fetch products");

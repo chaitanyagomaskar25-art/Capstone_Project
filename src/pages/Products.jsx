@@ -18,7 +18,7 @@ const Products = () => {
   const [search, setSearch] = useState("");
   const [sortBy, setSortBy] = useState("default");
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
-  
+  const [category, setCategory] = useState("all");
   const debouncedSearch = useDebounce(search, 500);
 
   const {
@@ -37,24 +37,34 @@ const Products = () => {
   });
 
   const processedProducts = useMemo(() => {
-    let result = products.filter((product) => {
-      const title = product?.title ?? "";
-      const input = debouncedSearch ?? "";
-      return title.toLowerCase().includes(input.toLowerCase());
-    });
+  let result = products.filter((product) => {
+    const title = product?.title ?? "";
+    const input = debouncedSearch ?? "";
 
-    if (sortBy === "price-asc") {
-      result.sort((a, b) => Number(a.price) - Number(b.price));
-    } else if (sortBy === "price-desc") {
-      result.sort((a, b) => Number(b.price) - Number(a.price));
-    } else if (sortBy === "title-asc") {
-      result.sort((a, b) => (a.title || "").localeCompare(b.title || ""));
-    }
+    const matchesSearch = title
+      .toLowerCase()
+      .includes(input.toLowerCase());
 
-    return result;
-  }, [products, debouncedSearch, sortBy]);
+    const matchesCategory =
+      category === "all" || product.category === category;
 
-  const containerVariants = {
+    return matchesSearch && matchesCategory;
+  });
+
+  if (sortBy === "price-asc") {
+    result.sort((a, b) => Number(a.price) - Number(b.price));
+  } else if (sortBy === "price-desc") {
+    result.sort((a, b) => Number(b.price) - Number(a.price));
+  } else if (sortBy === "title-asc") {
+    result.sort((a, b) =>
+      (a.title || "").localeCompare(b.title || "")
+    );
+  }
+
+  return result;
+}, [products, debouncedSearch, sortBy, category]);
+ 
+const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -66,7 +76,33 @@ const Products = () => {
     hidden: { opacity: 0, y: 15 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
   };
-
+const categoryOptions = [
+  { id: "all", label: "All Products" },
+  { id: "beauty", label: "Beauty" },
+  { id: "fragrances", label: "Fragrances" },
+  { id: "furniture", label: "Furniture" },
+  { id: "groceries", label: "Groceries" },
+  { id: "home-decoration", label: "Home Decoration" },
+  { id: "kitchen-accessories", label: "Kitchen Accessories" },
+  { id: "laptops", label: "Laptops" },
+  { id: "mens-shirts", label: "Mens Shirt" },
+  { id: "mens-shoes", label: "Mens Shoes" },
+  { id: "mens-watches", label: "Mens Watches" },
+  { id: "mobile-accessories", label: "Mobile" },
+  { id: "motorcycle", label: "Bike" },
+  { id: "skin-care", label: "Skin Care" },
+  { id: "smartphones", label: "Smartphones" },
+  { id: "sports-accessories", label: "Sports" },
+  { id: "sunglasses", label: "Sunglasses" },
+  { id: "tablets", label: "Tablets" },
+  { id: "tops", label: "Women Kurties" },
+  { id: "vehicle", label: "Vehicle" },
+  { id: "womens-bags", label: "Women Bags" },
+  { id: "womens-dresses", label: "Women Dresses" },
+  { id: "womens-jewellery", label: "Women Jewellery" },
+  { id: "womens-shoes", label: "Women Shoes" },
+  { id: "womens-watches", label: "Women Watches" },
+];
   const sortOptions = [
     { id: 'default', label: 'Featured / Default' },
     { id: 'price-asc', label: 'Price: Low to High' },
@@ -192,9 +228,12 @@ const Products = () => {
               <ArrowUpDown className="w-3.5 h-3.5 text-indigo-600" />
               Sort By
             </span>
-            {sortBy !== 'default' && (
+            {(sortBy !== 'default' || category !== 'all') && (
               <button 
-                onClick={() => setSortBy('default')}
+                onClick={() => {setSortBy('default')
+                    setCategory("all");
+
+                }}
                 className="text-[11px] font-semibold text-indigo-600 hover:underline cursor-pointer"
               >
                 Reset
@@ -221,6 +260,32 @@ const Products = () => {
               );
             })}
           </div>
+          <div className="pt-4 border-t border-slate-100">
+  <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
+    Category
+  </span>
+
+  <div className="space-y-1.5 mt-3">
+    {categoryOptions.map((option) => {
+      const isActive = category === option.id;
+
+      return (
+        <button
+          key={option.id}
+          onClick={() => setCategory(option.id)}
+          className={`w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-medium transition-all flex items-center justify-between cursor-pointer ${
+            isActive
+              ? "bg-indigo-50 text-indigo-700 font-semibold"
+              : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+          }`}
+        >
+          {option.label}
+          {isActive && <Check className="w-3.5 h-3.5 text-indigo-600" />}
+        </button>
+      );
+    })}
+  </div>
+</div>
         </motion.aside>
 
         {/* Mobile Dropdown Panel */}
@@ -288,6 +353,8 @@ const Products = () => {
                   onClick={() => {
                     setSearch("");
                     setSortBy("default");
+                      setCategory("all");
+
                   }}
                   className="inline-flex items-center gap-1 px-4 py-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-600 text-xs font-semibold rounded-xl transition-colors cursor-pointer"
                 >

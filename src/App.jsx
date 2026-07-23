@@ -1,18 +1,20 @@
 import { createBrowserRouter, Navigate } from "react-router";
 import PublicLayout from "./layout/PublicLayout";
-import Home from "./pages/Home";
-import Products from "./pages/Products";
-import Cart from "./pages/Cart";
-import AdminLayout from "./layout/AdminLayout";
-import Dashboard from "./pages/admin/Dashboard";
-import AdminProducts from "./pages/admin/Products";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Login from "./pages/Login";
-import EditProduct from "./pages/admin/EditProduct";
-import AddProducts from "./pages/admin/AddProducts";
-import ProductDetails from "./components/ProductDetails";
-import NotFound from "./components/NotFound";
-import ErrorPage from "./pages/ErrorPage";
+import { lazy } from "react";
+const Home = lazy(()=>import("./pages/Home"))
+const Products = lazy(()=>import("./pages/Products"))
+const Cart = lazy(()=>import("./pages/Cart"))
+const AdminLayout = lazy(()=>import("./layout/AdminLayout"))
+const Dashboard = lazy(()=>import("./pages/admin/Dashboard"))
+const EditProduct = lazy(()=>import("./pages/admin/EditProduct"))
+const AddProducts = lazy(()=>import("./pages/admin/AddProducts"))
+const AdminProducts = lazy(()=>import("./pages/admin/Products"))
+const ProductDetails = lazy(()=>import("./components/ProductDetails"))
+const NotFound = lazy(()=>import("./components/NotFound"))
+const ErrorPage = lazy(()=>import("./pages/ErrorPage"))
+
 
 const routes = createBrowserRouter([
   {

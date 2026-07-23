@@ -30,9 +30,9 @@ const ProductCard = ({ product }) => {
       
       {/* Image & Badge Wrapper */}
       <div className="relative h-48 sm:h-52 w-full bg-slate-50/80 rounded-2xl p-4 flex items-center justify-center overflow-hidden">
-        {product.image ? (
+        {product.thumbnail ? (
           <img
-            src={product.image}
+            src={product.thumbnail}
             alt={product.title}
             className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300"
             onError={(e) => {
