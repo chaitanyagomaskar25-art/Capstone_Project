@@ -169,7 +169,6 @@ const categoryOptions = [
       variants={containerVariants}
       className="max-w-7xl mx-auto space-y-6"
     >
-      {/* Header & Search Control Bar */}
       <motion.div 
         variants={itemVariants}
         className="bg-white/80 backdrop-blur-md p-6 rounded-2xl shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4"

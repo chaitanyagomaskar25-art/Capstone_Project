@@ -12,7 +12,7 @@ const CartCard = ({ item }) => {
         {/* Image Frame */}
         <div className="w-16 h-16 sm:w-20 sm:h-20 bg-slate-50 border border-slate-100 rounded-xl overflow-hidden shrink-0 flex items-center justify-center p-2">
           <img
-            src={item.image}
+            src={item.thumbnail}
             alt={item.title}
             className="w-full h-full object-contain"
             onError={(e) => {

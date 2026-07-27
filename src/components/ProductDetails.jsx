@@ -138,7 +138,7 @@ const ProductDetails = () => {
 
   const handleDecrease = () => {
     dispatch({
-      type: "REMOVE",
+      type: "DECREMENT",
       payload: product.id,
     });
   };

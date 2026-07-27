@@ -22,7 +22,7 @@ const ProductCard = ({ product }) => {
 
   const handleDecrease = (e) => {
     e.stopPropagation();
-    dispatch({ type: "REMOVE", payload: product.id });
+    dispatch({ type: "DECREMENT", payload: product.id });
   };
 
   return (

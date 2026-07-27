@@ -20,11 +20,13 @@ export const cartReducer = (state, action) => {
       );
 
     case "DECREMENT":
-      return state.map((item) =>
-        item.id === action.payload
-          ? { ...item, quantity: item.quantity - 1 }
-          : item,
-      ).filter((item)=> item.quantity > 0);
+      return state
+        .map((item) =>
+          item.id === action.payload
+            ? { ...item, quantity: item.quantity - 1 }
+            : item,
+        )
+        .filter((item) => item.quantity > 0);
 
     case "CLEAR_CART":
       return [];
