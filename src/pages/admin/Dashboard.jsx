@@ -92,7 +92,7 @@ const Dashboard = () => {
           </div>
           <div className="space-y-1 mt-4">
             <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Total Inventory</p>
-            <h3 className="text-3xl font-extrabold text-slate-900">124</h3>
+            <h3 className="text-3xl font-extrabold text-slate-900">195</h3>
             <p className="text-[10px] text-slate-400 font-medium">Active catalog items</p>
           </div>
         </motion.div>
